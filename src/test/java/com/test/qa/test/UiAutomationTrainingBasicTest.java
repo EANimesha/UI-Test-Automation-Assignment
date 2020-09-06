@@ -155,19 +155,34 @@ public class UiAutomationTrainingBasicTest extends TestBase {
         //Todo - Verify Login Page Displayed
         //Todo - Verify Logout Alert Displayed
         //Todo - Verify Logout  Alert Message
+
+        softAssert = new SoftAssert();
+        softAssert.assertTrue(HomePage.isHomePageDisplayed(), "Home Page is not Displayed");
+        HomePage.clickLink(Constants.LOGIN_LINK);
+        LoginPage.setUsername(Constants.LOGIN_USER_NAME);
+        LoginPage.setPassword(Constants.LOGIN_PASSWORD);
+        LoginPage.clickSubmit();
+        softAssert.assertTrue(LoginSecurePage.isLoginSecurePageDisplayed(),"Login Secure Page is not displayed");
+        softAssert.assertTrue(LoginSecurePage.isLoginAlertDisplayed(),"Login Alert is not displayed");
+        softAssert.assertTrue(LoginSecurePage.getLoginAlertMessage().contains(Constants.LOGIN_SUCCESS_MSG),"Login Alert message is incorrect");
+        LoginSecurePage.clickLogout();
+        softAssert.assertTrue(LoginPage.isLoginPageDisplayed(),"Login Page is not displayed");
+        softAssert.assertTrue(LoginPage.isLoginAlertDisplayed(),"Login Alert not displayed");
+        softAssert.assertTrue(LoginPage.getLoginAlertMessage().contains(Constants.LOGOUT_SUCCESS_MSG),"Logout message is incorrect");
+        softAssert.assertAll();
 	}
 
 	/**
 	 * Verify Login Invalid Scenario
 	 */
-	@Test(groups = { "test", "regression"}, priority = 7, dataProvider = "MultipleUserDetails", dataProviderClass = UserDetailsDataProvider.class)
-	public void testVerifyLogin(String username, String password) {
-        //TODO- SAME ACTION SHOULD BE REPEATED FOR MULTIPLE USERS
-        //Todo - Verify HomePage is displayed
-        //Todo - Click Login Link
-        //Todo - Set Invalid Username and Password
-        //Todo - Click Submit
-        //Todo - Verify Login Alert Displayed
-        //Todo - Verify Login  Alert Message
-	}
+//	@Test(groups = { "test", "regression"}, priority = 7, dataProvider = "MultipleUserDetails", dataProviderClass = UserDetailsDataProvider.class)
+//	public void testVerifyLogin(String username, String password) {
+//        //TODO- SAME ACTION SHOULD BE REPEATED FOR MULTIPLE USERS
+//        //Todo - Verify HomePage is displayed
+//        //Todo - Click Login Link
+//        //Todo - Set Invalid Username and Password
+//        //Todo - Click Submit
+//        //Todo - Verify Login Alert Displayed
+//        //Todo - Verify Login  Alert Message
+//	}
 }
