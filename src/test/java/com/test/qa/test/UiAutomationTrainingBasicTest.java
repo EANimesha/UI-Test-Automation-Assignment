@@ -167,7 +167,7 @@ public class UiAutomationTrainingBasicTest extends TestBase {
         softAssert.assertTrue(LoginSecurePage.getLoginAlertMessage().contains(Constants.LOGIN_SUCCESS_MSG),"Login Alert message is incorrect");
         LoginSecurePage.clickLogout();
         softAssert.assertTrue(LoginPage.isLoginPageDisplayed(),"Login Page is not displayed");
-        softAssert.assertTrue(LoginPage.isLoginAlertDisplayed(),"Login Alert not displayed");
+        softAssert.assertTrue(LoginPage.isLoginAlertDisplayed(),"Logout Alert not displayed");
         softAssert.assertTrue(LoginPage.getLoginAlertMessage().contains(Constants.LOGOUT_SUCCESS_MSG),"Logout message is incorrect");
         softAssert.assertAll();
 	}
@@ -175,14 +175,24 @@ public class UiAutomationTrainingBasicTest extends TestBase {
 	/**
 	 * Verify Login Invalid Scenario
 	 */
-//	@Test(groups = { "test", "regression"}, priority = 7, dataProvider = "MultipleUserDetails", dataProviderClass = UserDetailsDataProvider.class)
-//	public void testVerifyLogin(String username, String password) {
-//        //TODO- SAME ACTION SHOULD BE REPEATED FOR MULTIPLE USERS
-//        //Todo - Verify HomePage is displayed
-//        //Todo - Click Login Link
-//        //Todo - Set Invalid Username and Password
-//        //Todo - Click Submit
-//        //Todo - Verify Login Alert Displayed
-//        //Todo - Verify Login  Alert Message
-//	}
+	@Test(groups = { "test", "regression"}, priority = 7, dataProvider = "MultipleUserDetails", dataProviderClass = UserDetailsDataProvider.class)
+	public void testVerifyLoginForMultipleUsers(String username, String password) {
+        //TODO- SAME ACTION SHOULD BE REPEATED FOR MULTIPLE USERS
+        //Todo - Verify HomePage is displayed
+        //Todo - Click Login Link
+        //Todo - Set Invalid Username and Password
+        //Todo - Click Submit
+        //Todo - Verify Login Alert Displayed
+        //Todo - Verify Login  Alert Message
+        softAssert = new SoftAssert();
+        softAssert.assertTrue(HomePage.isHomePageDisplayed(), "Home Page is not Displayed");
+        HomePage.clickLink(Constants.LOGIN_LINK);
+        LoginPage.setUsername(username);
+        LoginPage.setPassword(password);
+        LoginPage.clickSubmit();
+        softAssert.assertTrue(LoginPage.isLoginAlertDisplayed(),"Login Alert not displayed");
+        softAssert.assertTrue(LoginPage.getLoginAlertMessage().contains(Constants.LOGIN_INVALID_MSG),"Login message is incorrect");
+        softAssert.assertAll();
+
+	}
 }
