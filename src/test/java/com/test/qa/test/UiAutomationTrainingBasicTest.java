@@ -176,7 +176,7 @@ public class UiAutomationTrainingBasicTest extends TestBase {
 	 * Verify Login Invalid Scenario
 	 */
 	@Test(groups = { "test", "regression"}, priority = 7, dataProvider = "MultipleUserDetails", dataProviderClass = UserDetailsDataProvider.class)
-	public void testVerifyLoginForMultipleUsers(String username, String password) {
+	public void testVerifyInvalidLogin(String username, String password) {
         //TODO- SAME ACTION SHOULD BE REPEATED FOR MULTIPLE USERS
         //Todo - Verify HomePage is displayed
         //Todo - Click Login Link
